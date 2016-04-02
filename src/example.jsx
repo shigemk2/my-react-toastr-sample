@@ -1,10 +1,25 @@
-var toastr = require('toastr');
-var ReactToastr = require("react-toastr");
-var {ToastContainer} = ReactToastr; // This is a React Element.
-var ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
+import {default as React, Component} from 'react';
+import ReactDOM from "react-dom";
+const ReactToastr = require("react-toastr");
+const {ToastContainer} = ReactToastr;
 
-// In a react component:
-var HelloWorld = React.createClass({
+const ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
+
+export class HelloWorld extends React.Component {
+    addAlert() {
+        this.refs.container.success(
+            "Welcome welcome welcome!!",
+            "You are now home my friend. Welcome home my friend.", {
+                timeOut: 30000,
+                extendedTimeOut: 10000
+            });
+        window.open("http://youtu.be/3SR75k7Oggg");
+    }
+
+    clearAlert() {
+        this.refs.container.clear();
+    }
+
     render () {
         return (
             <div>
@@ -15,7 +30,8 @@ var HelloWorld = React.createClass({
             </div>
         );
     }
-});
+}
+
 ReactDOM.render(
     <HelloWorld />,
     document.getElementById('content')
